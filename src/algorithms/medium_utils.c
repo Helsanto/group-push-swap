@@ -5,11 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gkordas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/12 09:58:54 by gkordas           #+#    #+#             */
-/*   Updated: 2026/03/12 09:58:58 by gkordas          ###   ########.fr       */
+/*   Created: 2026/02/27 15:44:48 by gkordas           #+#    #+#             */
+/*   Updated: 2026/02/27 15:44:50 by gkordas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
+#include <stdio.h>
 #include "push_swap.h"
 
 int	find_position_in_chunk(t_stack *a, int min, int max)
@@ -53,12 +55,12 @@ int	find_max_pos(t_stack *b)
 	return (pos);
 }
 
-void	rotate_stack(t_data *d, int max_pos)
+void	rotate_stack(t_stack *b, int max_pos)
 {
-	if (max_pos <= d->b->size / 2)
+	if (max_pos <= b->size / 2)
 		while (max_pos-- > 0)
-			rb(d);
+			rb(b);
 	else
-		while (max_pos++ < d->b->size)
-			rrb(d);
+		while (max_pos++ < b->size)
+			rrb(b);
 }

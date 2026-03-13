@@ -5,14 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gkordas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/12 09:56:26 by gkordas           #+#    #+#             */
-/*   Updated: 2026/03/12 09:56:34 by gkordas          ###   ########.fr       */
+/*   Created: 2026/02/27 14:23:11 by gkordas           #+#    #+#             */
+/*   Updated: 2026/02/27 14:23:14 by gkordas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include <stdio.h>
 
-static int	get_max_index(t_stack *a)
+// Return the highest index in the stack
+int	get_max_index(t_stack *a)
 {
 	int		max;
 	t_node	*tmp;
@@ -30,7 +31,8 @@ static int	get_max_index(t_stack *a)
 	return (max);
 }
 
-static int	count_bits(t_stack *a)
+// Count how many bits are needed to represent the largest index
+int	count_bits(t_stack *a)
 {
 	int	max_index;
 	int	bits;
@@ -42,36 +44,40 @@ static int	count_bits(t_stack *a)
 	return (bits);
 }
 
-static void	process_bit(t_data *d, int bit)
+// Process a single bit for radix sort
+void	process_bit(t_stack *a, t_stack *b, int bit)
 {
 	int	i;
 	int	total;
 
+	if (!a || !a->top)
+		return ;
 	i = 0;
-	total = d->a->size;
+	total = a->size;
 	while (i < total)
 	{
-		if (((d->a->top->index >> bit) & 1) == 0)
-			pb(d);
+		if (((a->top->index >> bit) & 1) == 0)
+			pb(a, b);
 		else
-			ra(d);
+			ra(a);
 		i++;
 	}
-	while (d->b->size > 0)
-		pa(d);
+	while (b->size > 0)
+		pa(a, b);
 }
 
-void	complex_sort(t_data *d)
+// Main radix sort function
+void	complex_sort(t_stack *a, t_stack *b)
 {
 	int	max_bits;
 	int	bit;
 
-	normalize_stack(d->a->top, d->a->size);
-	max_bits = count_bits(d->a);
+	normalize(a);
+	max_bits = count_bits(a);
 	bit = 0;
 	while (bit < max_bits)
 	{
-		process_bit(d, bit);
+		process_bit(a, b, bit);
 		bit++;
 	}
 }

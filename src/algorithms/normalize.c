@@ -5,12 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gkordas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/12 09:59:59 by gkordas           #+#    #+#             */
-/*   Updated: 2026/03/12 10:00:02 by gkordas          ###   ########.fr       */
+/*   Created: 2026/02/27 14:23:56 by gkordas           #+#    #+#             */
+/*   Updated: 2026/02/27 14:23:59 by gkordas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 int	*stack_to_array(t_node *a, int size)
 {
